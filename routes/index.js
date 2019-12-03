@@ -14,7 +14,12 @@ var Product = require('../db/models/product');
 
 /* GET login page. */
 router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Đăng nhập'});
+  res.render('pages/login', { title: 'Đăng nhập'});
+});
+
+/* GET register page. */
+router.get('/register', function (req, res, next) {
+  res.render('pages/register', { title: 'Đăng kí'});
 });
 
 /* GET home page. */
