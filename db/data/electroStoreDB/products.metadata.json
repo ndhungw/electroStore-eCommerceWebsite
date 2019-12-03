@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"electroStoreDB.products"}],"uuid":"607d50ff60c04aff990bf084fbc7d4d9"}
