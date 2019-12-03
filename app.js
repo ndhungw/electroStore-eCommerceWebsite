@@ -9,8 +9,8 @@ var Database = require('./db/database');//my added
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
-
 var app = express();
+require('dotenv').config()//my added
 
 // view engine setup
 // // app.set('views', path.join(__dirname, 'views'));
