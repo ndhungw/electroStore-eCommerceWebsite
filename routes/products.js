@@ -9,14 +9,14 @@ var router = express.Router();
 var Product = require('../db/models/product');
 
 /* GET products listing. */
-router.get('/list', function (req, res, next) {
+router.get('/', function (req, res, next) {
   Product.find().exec(function (err, product) {
     res.render('pages/products/list', { title: 'Tất cả sản phẩm', products: product });
   });
 });
 
 /* GET product-of-the-brand listing. */
-router.get('/list/:brand', function(req,res,next){
+router.get('/:brand', function(req,res,next){
   Product.find({brand: req.params.brand})
   .then(function(product){
     Product.count({brand: req.params.brand})
@@ -27,7 +27,7 @@ router.get('/list/:brand', function(req,res,next){
 });
 
 /* GET product details. */
-router.get('/details/:brand/:id', function (req, res, next) {
+router.get('/:brand/:id', function (req, res, next) {
   Product.findById(req.params.id)
   .then(function(product){
     res.render('pages/products/details', {foundProduct: product});
