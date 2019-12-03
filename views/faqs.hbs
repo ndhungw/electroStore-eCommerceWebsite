@@ -1,0 +1,162 @@
+<body>
+    <!-- banner-2 -->
+    <div class="page-head_agile_info_w3l">
+
+    </div>
+    <!-- //banner-2 -->
+
+    <!-- page -->
+    <div class="services-breadcrumb">
+        <div class="agile_inner_breadcrumb">
+            <div class="container">
+                <ul class="w3_short">
+                    <li>
+                        <a href="index.html">Home</a>
+                        <i>|</i>
+                    </li>
+                    <li>Câu hỏi thường gặp</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //page -->
+
+    <!-- Faqs -->
+    <div class="faqs-w3l py-sm-5 py-4">
+        <div class="container py-xl-4 py-lg-2">
+            <!-- tittle heading -->
+            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+                <span>C</span>âu hỏi thường gặp
+            </h3>
+            <!-- //tittle heading -->
+            <h3 class="w3-head mb-2">Top 10 câu hỏi thường gặp</h3>
+            <div class="faq-w3agile">
+                    <ul class="faq pl-4">
+                        <li class="item1 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi thứ 1 blah blah?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p> Câu trả lời cho câu hỏi 1 blah blah.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item2 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 2 ?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p> Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item3 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 3?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item4 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 4?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item5 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 5 ?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item6 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 6?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item7 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 7?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item8 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 8 ?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời 8.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item9 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 9?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời 9.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="item10 mt-3 pl-2">
+                            <a href="#" title="click here">Câu hỏi 10?</a>
+                            <ul>
+                                <li class="subitem1">
+                                    <p>Câu trả lời 10.</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <!-- //Faqs -->
+
+    {{>middle-section}}
+
+    <!-- js-files -->
+    {{>jquery}}
+	{{>nav-smooth-scroll}}
+	{{>popup-modal}}
+	{{>cart-js}}
+	{{>password-script}}
+
+    <!-- script for tabs -->
+    <script>
+        $(function () {
+
+            var menu_ul = $('.faq > li > ul'),
+                menu_a = $('.faq > li > a');
+
+            menu_ul.hide();
+
+            menu_a.click(function (e) {
+                e.preventDefault();
+                if (!$(this).hasClass('active')) {
+                    menu_a.removeClass('active');
+                    menu_ul.filter(':visible').slideUp('normal');
+                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                } else {
+                    $(this).removeClass('active');
+                    $(this).next().stop(true, true).slideUp('normal');
+                }
+            });
+
+        });
+    </script>
+    <!-- script for tabs -->
+
+    {{>smoothscroll}}
+
+    <!-- for bootstrap working -->
+    <script src="js/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- //js-files -->
+
+</body>
