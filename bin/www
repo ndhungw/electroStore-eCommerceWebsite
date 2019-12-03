@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+require('dotenv').config()//my added
 var app = require('../app');
 var debug = require('debug')('node-express-mongo-raw:server');
 var http = require('http');
