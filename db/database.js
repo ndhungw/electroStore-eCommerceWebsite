@@ -6,7 +6,7 @@ let mongoose = require('mongoose');
 //cloud atlas
 //const mongodb_url = 'mongodb+srv://ndh1379:123456.@cluster0-dqfsn.gcp.mongodb.net/electroStoreDB?retryWrites=true&w=majority'
 
-const mongodb_url = process.env.MONGODB_URI;//new edit for using .env
+const mongodb_url = process.env.MONGODB_URsI||process.env.MONGODB_LOCALHOST;//new edit for using .env
 
 class Database {
     constructor() {
