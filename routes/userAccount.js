@@ -1,0 +1,47 @@
+var express = require('express');
+
+var router = express.Router();
+// /* GET products listing. */
+// router.get('products/list', function(req, res, next) {
+//   res.send('ListProduct');
+// });
+
+var UserAccount = require('../db/models/userAccount');
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    UserAccount.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+router.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
+
+
+
+module.exports = router;

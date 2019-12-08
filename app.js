@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');//my added
@@ -9,6 +10,7 @@ var Database = require('./db/database');//my added
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
+var userAccountsRouter = require('./routes/userAccount');
 var app = express();
 //require('dotenv').config()//my added
 
@@ -21,9 +23,14 @@ app.set('view engine', '.hbs');//my added
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+app.post('/login', userAccountsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);
