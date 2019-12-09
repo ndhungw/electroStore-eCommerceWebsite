@@ -25,13 +25,14 @@ router.get('/register', function (req, res, next) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   Product.find().exec((function (err, product) {
-    res.render('index', { title: 'Trang chủ', products: product });
+    console.log("get user " + req.user);
+    res.render('index', { title: 'Trang chủ', products: product, user: req.user });
   }));
 
 })
 /* POST home page. */
 router.post('/', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
+  res.render('index', { title: 'Trang chủ', user: req.user});
 });
 
 /* GET index.html page. */
