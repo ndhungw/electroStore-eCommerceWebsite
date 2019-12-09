@@ -1,7 +1,11 @@
 var createError = require('http-errors');
 var express = require('express');
+var expressSession = require('express-session');
+var bodyParser = require('body-parser');
+
 var path = require('path');
-var cookieParser = require('cookie-parser');
+var passport = require('passport');
+//var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');//my added
 var Database = require('./db/database');//my added
@@ -9,6 +13,7 @@ var Database = require('./db/database');//my added
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
+var userAccountsRouter = require('./routes/userAccount');
 var app = express();
 //require('dotenv').config()//my added
 
@@ -20,10 +25,20 @@ app.set('view engine', '.hbs');//my added
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(express.urlencoded({ extended: false }));
+
+//app.use(session());
+//app.use(cookieParser());
+
+app.use(expressSession({secret: 'keyboard cat'}))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post('/login', userAccountsRouter);
+app.post('/register', userAccountsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);

@@ -8,13 +8,31 @@
 
 // module.exports = router;
 
+
+var express = require('express');
+
+var router = express.Router();
+
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// /* GET products listing. */
+// router.get('products/list', function(req, res, next) {
+//   res.send('ListProduct');
+// });
+
 var express = require('express');
 var router = express.Router();
 var Product = require('../db/models/product');
 
+
 /* GET login page. */
 router.get('/login', function (req, res, next) {
   res.render('pages/login', { title: 'Đăng nhập'});
+});
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 /* GET register page. */
@@ -25,13 +43,14 @@ router.get('/register', function (req, res, next) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   Product.find().exec((function (err, product) {
-    res.render('index', { title: 'Trang chủ', products: product });
+    console.log("get user " + req.user);
+    res.render('index', { title: 'Trang chủ', products: product, user: req.user });
   }));
 
 })
 /* POST home page. */
 router.post('/', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
+  res.render('index', { title: 'Trang chủ', user: req.user});
 });
 
 /* GET index.html page. */
