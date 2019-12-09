@@ -18,5 +18,7 @@ userAccountSchema.methods.validPassword = function( pwd ) {
     return ( this.password === pwd );
 };
 
+
+
 module.exports = mongoose.model('userAccount', userAccountSchema,'userAccount');
 //Note that mongoose will create the pluralized name of userAccountthe model: ('products')

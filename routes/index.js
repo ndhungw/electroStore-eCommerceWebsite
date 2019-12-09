@@ -20,8 +20,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 //   res.send('ListProduct');
 // });
 
-var UserAccount = require('../db/models/userAccount');
-
 var express = require('express');
 var router = express.Router();
 var Product = require('../db/models/product');
