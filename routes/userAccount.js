@@ -51,5 +51,4 @@ router.post('/login',
     res.redirect('/');;
   });
 
-
 module.exports = router;
