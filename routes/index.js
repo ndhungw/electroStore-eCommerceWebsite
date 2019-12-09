@@ -8,6 +8,20 @@
 
 // module.exports = router;
 
+
+var express = require('express');
+
+var router = express.Router();
+
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// /* GET products listing. */
+// router.get('products/list', function(req, res, next) {
+//   res.send('ListProduct');
+// });
+
+var UserAccount = require('../db/models/userAccount');
+
 var express = require('express');
 var router = express.Router();
 var Product = require('../db/models/product');
