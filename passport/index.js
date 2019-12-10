@@ -47,14 +47,14 @@ passport.use('local-login',new LocalStrategy(
 
 passport.use('local-signup',new LocalStrategy(
   function(username, password, done) {
-    if (password.length < 7)
+    if (password.length < 6)
     {
-      return done(null, false);
+      return done(null, false, { message: 'Password must atleast 6 characters long' });
     }
     UserAccount.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (user) { //already a username
-        return done(null, false);
+        return done(null, false, { message: 'Username already taken' });
       }
       var newUser = new UserAccount();
       newUser.username = username;

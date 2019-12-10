@@ -39,7 +39,7 @@ router.get('/logout', function(req, res){
 
 /* GET register page. */
 router.get('/register', function (req, res, next) {
-  res.render('pages/register', { title: 'Đăng kí'});
+  res.render('pages/register', { title: 'Đăng kí', message: req.flash('error')});
 });
 
 /* GET home page. */
@@ -131,7 +131,7 @@ router.get('/product2.html', function(req, res, next) {
 
 /* GET single page. */
 router.get('/single.html', function(req, res, next) {
-  res.render('pages/single', { title: 'Chi tiết sản phẩm'});
+  res.render('pages/single', { title: 'Chi tiết sản phẩm', user: req.user});
 });
 
 /* GET single2 page. */
