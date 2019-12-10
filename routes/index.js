@@ -57,91 +57,91 @@ router.post('/', function(req, res, next) {
 
 /* GET index.html page. */
 router.get('/index.html', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
+  res.render('index', { title: 'Trang chủ', user: req.user });
 });
 /* POST index.html page. */
 router.post('/index.html', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
+  res.render('index', { title: 'Trang chủ', user: req.user });
 });
 
 
 /* GET about page. */
 router.get('/about.html', function(req, res, next) {
-  res.render('pages/about', { title: 'Về chúng tôi' });
+  res.render('pages/about', { title: 'Về chúng tôi', user: req.user });
 });
 
 /* GET checkout page. */
 router.get('/checkout.html', function(req, res, next) {
-  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
+  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng', user: req.user });
 });
 /* POST checkout page. */
 router.post('/checkout.html', function(req, res, next) {
-  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
+  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng', user: req.user });
 });
 
 /* GET contact page. */
 router.get('/contact.html', function(req, res, next) {
-  res.render('pages/contact', { title: 'Liên hệ' });
+  res.render('pages/contact', { title: 'Liên hệ', user: req.user });
 });
 
 /* POST contact page. */
 router.post('/contact.html', function(req, res, next) {
-  res.render('pages/contact', { title: 'Liên hệ' });
+  res.render('pages/contact', { title: 'Liên hệ', user: req.user });
 });
 
 /* GET faqs page. */
 router.get('/faqs.html', function(req, res, next) {
-  res.render('pages/faqs', { title: 'Câu hỏi thường gặp' });
+  res.render('pages/faqs', { title: 'Câu hỏi thường gặp', user: req.user });
 });
 
 /* POST faqs page. */
 router.post('/faqs.html', function(req, res, next) {
-  res.render('pages/faqs', { title: 'Câu hỏi thường gặp' });
+  res.render('pages/faqs', { title: 'Câu hỏi thường gặp', user: req.user });
 });
 
 /* GET help page. */
 router.get('/help.html', function(req, res, next) {
-  res.render('pages/help', { title: 'Trợ giúp' });
+  res.render('pages/help', { title: 'Trợ giúp', user: req.user });
 });
 
 /* GET payment page. */
 router.get('/payment.html', function(req, res, next) {
-  res.render('pages/payment', { title: 'Thanh toán' });
+  res.render('pages/payment', { title: 'Thanh toán', user: req.user });
 });
 
 /* POST payment page. */
 router.post('/payment.html', function(req, res, next) {
-  res.render('pages/payment', { title: 'Thanh toán' });
+  res.render('pages/payment', { title: 'Thanh toán', user: req.user });
 });
 
 /* GET privacy page. */
 router.get('/privacy.html', function(req, res, next) {
-  res.render('pages/privacy', { title: 'Riêng tư' });
+  res.render('pages/privacy', { title: 'Riêng tư', user: req.user });
 });
 
 /* GET product page. */
 router.get('/product.html', function(req, res, next) {
-  res.render('pages/product', { title: 'Sản phẩm' });
+  res.render('pages/product', { title: 'Sản phẩm', user: req.user });
 });
 
 /* GET product2 page. */
 router.get('/product2.html', function(req, res, next) {
-  res.render('pages/product', { title: 'Sản phẩm' });
+  res.render('pages/product', { title: 'Sản phẩm', user: req.user });
 });
 
 /* GET single page. */
 router.get('/single.html', function(req, res, next) {
-  res.render('pages/single', { title: 'Chi tiết sản phẩm' });
+  res.render('pages/single', { title: 'Chi tiết sản phẩm'});
 });
 
 /* GET single2 page. */
 router.get('/single2.html', function(req, res, next) {
-  res.render('pages/single2', { title: 'Chi tiết sản phẩm' });
+  res.render('pages/single2', { title: 'Chi tiết sản phẩm', user: req.user });
 });
 
 /* GET terms page. */
 router.get('/terms.html', function(req, res, next) {
-  res.render('pages/terms', { title: 'Điều khoản' });
+  res.render('pages/terms', { title: 'Điều khoản', user: req.user });
 });
 
 module.exports = router;

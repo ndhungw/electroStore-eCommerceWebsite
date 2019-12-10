@@ -4,10 +4,20 @@ var router = express.Router();
 
 var passport = require('../passport/index');
 
+// router.post('/login', 
+//   passport.authenticate('local-login', {
+//     failureRedirect: '/login', 
+//     successRedirect: '/',
+//   failureFlash: true })
+// );
+
 router.post('/login', 
-  passport.authenticate('local-login', { successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true })
+  passport.authenticate('local-login', {
+    failureRedirect: '/login', 
+    failureFlash: true }),
+    function(req, res) {
+      res.redirect('/');
+    }
 );
 
 router.post('/register', 
