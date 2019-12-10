@@ -8,13 +8,12 @@ var ProductFilter = {};
 var Product = require('../db/models/product');
 
 ProductFilter.getProductByFiler = function (clickedID) {
-    console.log('hello from filter');
+    
     var result;
     if (clickedID === "below1000")
     {
-        Product.find({currentPrice: {$lt: 1000}}, (err, product)=> {
-            if (!err) result = product; 
-        })
+        result = Product.find({currentPrice: {$lt: 1000}});
+        console.log(result);
     }
     return result;
 };
