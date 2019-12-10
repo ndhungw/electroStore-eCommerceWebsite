@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var userAccountsRouter = require('./routes/userAccount');
+var productFilter = require('./routes/filter');
 var app = express();
 //require('dotenv').config()//my added
 
@@ -42,6 +43,7 @@ app.post('/register', userAccountsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);
+app.use('/filter',productFilter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
