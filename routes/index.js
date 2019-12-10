@@ -27,9 +27,11 @@ var Product = require('../db/models/product');
 
 /* GET login page. */
 router.get('/login', function (req, res, next) {
-  res.render('pages/login', { title: 'Đăng nhập'});
+  
+  res.render('pages/login', { title: 'Đăng nhập', message: req.flash('error')});
 });
 
+/* GET logout page. */
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
