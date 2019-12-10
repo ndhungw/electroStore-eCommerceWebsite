@@ -1,7 +1,7 @@
 var express = require('express');
 
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+//var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // /* GET products listing. */
 // router.get('products/list', function(req, res, next) {
 //   res.send('ListProduct');
@@ -35,10 +35,10 @@ passport.use('local-login',new LocalStrategy(
     UserAccount.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false);
+        return done(null, false, { message: 'Incorrect username.' });
       }
       if (!user.validPassword(password)) {
-        return done(null, false);
+        return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
     });
@@ -47,14 +47,14 @@ passport.use('local-login',new LocalStrategy(
 
 passport.use('local-signup',new LocalStrategy(
   function(username, password, done) {
-    if (username.length < 7)
+    if (password.length < 6)
     {
-      return done(null, false);
+      return done(null, false, { message: 'Password must atleast 6 characters long' });
     }
     UserAccount.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (user) { //already a username
-        return done(null, false);
+        return done(null, false, { message: 'Username already taken' });
       }
       var newUser = new UserAccount();
       newUser.username = username;
