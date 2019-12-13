@@ -1,3 +1,4 @@
+var express = require('express');
 var ProductFilter = {};
 
 // /* GET products listing. */
@@ -7,15 +8,17 @@ var ProductFilter = {};
 
 var Product = require('../db/models/product');
 
-ProductFilter.getProductByFiler = function (clickedID) {
+ProductFilter.getProductByFiler = function (req, res, next) {
     
     var result;
-    if (clickedID === "below1000")
+    if (req.params.filterID === "below1000")
     {
-        result = Product.find({currentPrice: {$lt: 1000}});
-        console.log(result);
+        Product.find({currentPrice: {$lt: 300}})
+        .then(function(product)
+        {
+          res.render('pages/products/list',{title: 'Kết quả tìm được', products: product});
+        })
     }
-    return result;
 };
 
 module.exports = ProductFilter;
