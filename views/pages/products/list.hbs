@@ -166,35 +166,35 @@
 							<div class="left-side py-2">
 								<ul>
 									<li>
-										<input type="radio" checked="true" class="checked" name = "brandcheck">
+										<input type="radio" value="All" checked="true" class="checked" name = "brandcheck">
 										<span class="span">All</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Samsung" class="checked" name = "brandcheck">
 										<span class="span">Samsung</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Apple" class="checked" name = "brandcheck">
 										<span class="span">Apple</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Oppo" class="checked" name = "brandcheck">
 										<span class="span">Oppo</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Xiaomi" class="checked" name = "brandcheck">
 										<span class="span">Xiaomi</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Asus" class="checked" name = "brandcheck">
 										<span class="span">Asus</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Google" class="checked" name = "brandcheck">
 										<span class="span">Google</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "brandcheck">
+										<input type="radio" value= "Motorola" class="checked" name = "brandcheck">
 										<span class="span">Motorola</span>
 									</li>
 									
@@ -208,28 +208,26 @@
 							<div class="left-side py-2">
 								<ul>
 									<li>
-										<input type="radio" checked="true" class="checked" name = "pricecheck">
+										<input value ="All" type="radio" checked="true" class="checked" name = "pricecheck">
 										<span class="span">Tất cả</span>
 									</li>
+
 									<li>
-										<input type="radio" class="checked" name = "pricecheck">
-										<span class="span">$1,000 - $5,000</span>
+										<input value = "below100" type="radio" checked="true" class="checked" name = "pricecheck">
+										<span class="span">Dưới $100</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "pricecheck">
-										<span class="span">$5,000 - $10,000</span>
+										<input value = "200" type="radio" class="checked" name = "pricecheck">
+										<span class="span">$100 - $200</span>
 									</li>
 									<li>
-										<input type="radio" class="checked" name = "pricecheck">
-										<span class="span">$10,000 - $20,000</span>
+										<input value = "500" type="radio" class="checked" name = "pricecheck">
+										<span class="span">$200 - $500</span>
 									</li>
+
 									<li>
-										<input type="radio" class="checked" name = "pricecheck">
-										<span class="span">$20,000 $30,000</span>
-									</li>
-									<li>
-										<input type="radio" class="checked" name = "pricecheck">
-										<span class="span">Trên $30,000</span>
+										<input value = "above500" type="radio" class="checked" name = "pricecheck">
+										<span class="span">Trên $500</span>
 									</li>
 									
 								</ul>
@@ -267,60 +265,13 @@
 							</ul>
 						</div>
 						<!-- //discounts -->
-						<!-- offers -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Đề nghị</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Đề nghị trao đổi</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Không chi phí EMI</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Giá đặc biệt</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //offers -->
-						<!-- delivery -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Thanh toán khi nhận hàng</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Đủ điều kiện thanh toán khi nhận hàng</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //delivery -->
-						<!-- arrivals -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Hàng mới về</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">30 ngày gần đây</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">90 ngày gần đây</span>
-								</li>
-							</ul>
-						</div>
+						
+						<!-- submit button -->
 						<div class="left-side py-2">
-							<h3 class="agileits-sear-head mb-3">Khả dụng</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Không bao gồm hàng</span>
-								</li>
-							</ul>
+							<a id = "filterButton" href="#" class="btn my-2 my-sm-0"
+							onclick="getSearchLink()">Set filter</a>
+							
 						</div>
-						<!-- //arrivals -->
 					</div>
 					<!-- //product right -->
 				</div>
@@ -338,6 +289,37 @@
 	{{>cart-js}}
 	{{>password-script}}
 	{{>smoothscroll}}
+	<script>
+		function getSearchLink()
+		{
+			var brand;
+			var arr = document.getElementsByName("brandcheck")
+			for(i = 0; i < arr.length; i++) { 
+				
+				if(arr[i].checked)
+				{
+					brand = arr[i].value;
+				}
+                        
+            }
+
+			var price;
+			arr = document.getElementsByName("pricecheck")
+			for(i = 0; i < arr.length; i++) { 
+				
+				if(arr[i].checked)
+				{
+					price = arr[i].value;
+				}
+                        
+            }
+
+			var link = "/products/search/" + "?brand=" + brand + "&price=" + price;
+			document.getElementById("filterButton").href = link;
+
+		}
+	</script>
+	
 
 	<!-- for bootstrap working -->
 	<script src="js/bootstrap.js"></script>

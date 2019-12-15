@@ -1,4 +1,6 @@
 var express = require('express');
+var ProductSearch = require('../controller/search');
+
 var router = express.Router();
 
 // /* GET products listing. */
@@ -7,6 +9,10 @@ var router = express.Router();
 // });
 
 var Product = require('../db/models/product');
+
+router.get('/search/', function (req, res, next) { 
+    
+  ProductSearch.GetProduct(req, res, next)});
 
 /* GET products listing. */
 router.get('/', function (req, res, next) {
@@ -17,6 +23,7 @@ router.get('/', function (req, res, next) {
 
 /* GET product-of-the-brand listing. */
 router.get('/:brand', function(req,res,next){
+  
   Product.find({brand: req.params.brand})
   .then(function(product){
     Product.count({brand: req.params.brand})
@@ -33,7 +40,6 @@ router.get('/:brand/:id', function (req, res, next) {
     res.render('pages/products/details', {foundProduct: product, user: req.user});
   })
 });
-
 
 
 

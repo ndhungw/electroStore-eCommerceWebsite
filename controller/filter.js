@@ -9,16 +9,21 @@ var ProductFilter = {};
 var Product = require('../db/models/product');
 
 ProductFilter.getProductByFiler = function (req, res, next) {
-    
-    var result;
+    var condition = [];
+    console.log("hello thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     if (req.params.filterID === "below1000")
     {
-        Product.find({currentPrice: {$lt: 300}})
+      //condition.push({currentPrice: {$lt: 1000}});
+      condition.push({brand: "Samsung"});
+        
+    }
+
+    condition.push({currentPrice: {$lt: 300}});
+    Product.find({$and: condition})
         .then(function(product)
         {
           res.render('pages/products/list',{title: 'Kết quả tìm được', products: product});
         })
-    }
 };
 
 module.exports = ProductFilter;
