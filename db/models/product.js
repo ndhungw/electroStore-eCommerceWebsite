@@ -12,6 +12,14 @@ var productSchema = new Schema({
     imgURL3: {type: String, required: true},
 }); 
 
+productSchema.statics.getProductByFilter = function(FilterID) {
+    if (FilterID === "below1000")
+    {
+        return this.find({currentPrice: {$lt: 1000}});
+    }
+    
+  };
+
 /*export this module so that i can import the functionality 
 of this file in other files*/
 //export mongoose and model method
