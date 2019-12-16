@@ -41,6 +41,20 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req,res,next)
+{
+  res.locals.user = req.user;
+  if (req.query.brand)
+  {
+    res.locals.brand = req.query.brand;
+  }
+
+  if (req.query.price)
+  {
+    res.locals.price = req.query.price;
+  }
+  next();
+})
 
 app.post('/login', userAccountsRouter);
 app.post('/register', userAccountsRouter);

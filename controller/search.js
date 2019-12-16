@@ -12,12 +12,12 @@ ProductSearch.GetProduct = function (req, res, next) {
     
     var condition = [];
     condition.push({});
-    console.log("hello thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    //console.log("hello thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     if (req.query.brand != "All")
     {
-        console.log("hello thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+       // console.log("hello thereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         var chosenBrand = req.query.brand;
-        condition.push({brand: chosenBrand});   
+        condition.push({brand: chosenBrand});
     }
 
     if (req.query.price != "All")

@@ -1,6 +1,7 @@
 var express = require('express');
 
 var bodyParser = require('body-parser');
+
 //var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // /* GET products listing. */
 // router.get('products/list', function(req, res, next) {
@@ -40,6 +41,7 @@ passport.use('local-login',new LocalStrategy(
       if (!user.validPassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
+
       return done(null, user);
     });
   }

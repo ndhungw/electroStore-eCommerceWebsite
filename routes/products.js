@@ -17,7 +17,7 @@ router.get('/search/', function (req, res, next) {
 /* GET products listing. */
 router.get('/', function (req, res, next) {
   Product.find().exec(function (err, product) {
-    res.render('pages/products/list', { title: 'Tất cả sản phẩm', products: product, user: req.user });
+    res.render('pages/products/list', { title: 'Tất cả sản phẩm', products: product});
   });
 });
 
@@ -28,7 +28,7 @@ router.get('/:brand', function(req,res,next){
   .then(function(product){
     Product.count({brand: req.params.brand})
     .then(function(count){
-      res.render('pages/products/brand-list',{title: 'Sản phẩm thương hiệu', brandProducts: product, brand: req.params.brand, count: count, user: req.user});
+      res.render('pages/products/brand-list',{title: 'Sản phẩm thương hiệu', brandProducts: product, brand: req.params.brand, count: count});
     })
   })
 });
@@ -37,7 +37,7 @@ router.get('/:brand', function(req,res,next){
 router.get('/:brand/:id', function (req, res, next) {
   Product.findById(req.params.id)
   .then(function(product){
-    res.render('pages/products/details', {foundProduct: product, user: req.user});
+    res.render('pages/products/details', {foundProduct: product});
   })
 });
 
