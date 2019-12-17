@@ -10,9 +10,10 @@ var router = express.Router();
 
 var Product = require('../db/models/product');
 
+/*GET search result*/
 router.get('/search/', function (req, res, next) { 
     
-  ProductSearch.GetProduct(req, res, next)});
+  ProductSearch.GetProductList(req, res, next)});
 
 /* GET products listing. */
 router.get('/', function (req, res, next) {
@@ -40,8 +41,5 @@ router.get('/:brand/:id', function (req, res, next) {
     res.render('pages/products/details', {foundProduct: product});
   })
 });
-
-
-
 
 module.exports = router;

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;//use the mongoose schema object
 
 //create a new schema
 var productSchema = new Schema({ 
-    productName: {type: String, required: true},
+    name: {type: String, required: true},
     brand: {type: String, required: true},
     currentPrice : {type: Number, required: true},
     oldPrice : {type: Number, required: true},

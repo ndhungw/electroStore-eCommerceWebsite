@@ -14,7 +14,7 @@
 						<a href="index.html">Home</a>
 						<i>|</i>
 					</li>
-					<li>{{foundProduct.productName}}</li>
+					<li>{{foundProduct.name}}</li>
 				</ul>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 				</div>
 
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
-					<h3 class="mb-3">{{foundProduct.productName}}</h3>
+					<h3 class="mb-3">{{foundProduct.name}}</h3>
 					<p class="mb-3">
 						<span class="item_price">${{foundProduct.currentPrice}}</span>
 						<del class="mx-2 font-weight-light">${{foundProduct.oldPrice}}</del>
@@ -110,7 +110,7 @@
 									<input type="hidden" name="cmd" value="_cart" />
 									<input type="hidden" name="add" value="1" />
 									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="{{foundProduct.productName}}" />
+									<input type="hidden" name="item_name" value="{{foundProduct.name}}" />
 									<input type="hidden" name="amount" value="{{foundProduct.currentPrice}}" />
 									<input type="hidden" name="discount_amount" value="1.00" />
 									<input type="hidden" name="currency_code" value="USD" />

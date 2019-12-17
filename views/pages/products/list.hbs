@@ -1,4 +1,4 @@
-<body onload=SetOptions("{{brand}}","{{price}}")>
+<body onload= 'SetOptions("{{brand}}","{{price}}","{{sort}}", "{{order}}")'>
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l">
 
@@ -94,7 +94,7 @@
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="/products/{{this.brand}}/{{this.id}}">{{this.productName}}</a>
+												<a href="/products/{{this.brand}}/{{this.id}}">{{this.name}}</a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price">${{this.currentPrice}}</span>
@@ -164,7 +164,7 @@
 									<label class="input-group-text" for="inputGroupSelect01">Sort by</label>
 								</div>
 								<select class="custom-select" id="inputGroupSelect01">
-									<option disabled selected>Chọn...</option>
+									<option value="0" disabled="true" selected="true">Chọn...</option>
 									<option value="1">Tên sản phẩm</option>
 									<option value="2">Giá sản phẩm</option>
 								</select>
@@ -175,9 +175,9 @@
 									<label class="input-group-text" for="inputGroupSelect02">Order by</label>
 								</div>
 								<select class="custom-select" id="inputGroupSelect02">
-									<option disabled selected>Chọn...</option>
+									<option value="0" disabled="true" selected="true">Chọn...</option>
 									<option value="1">Tăng dần</option>
-									<option value="2">Giảm dần</option>
+									<option value="-1">Giảm dần</option>
 								</select>
 							</div>
 							{{!--/ select Sort & Order --}}
