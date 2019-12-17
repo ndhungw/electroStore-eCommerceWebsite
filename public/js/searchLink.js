@@ -1,5 +1,5 @@
 
-function SetOptions(brand, price)
+function SetOptions(brand, price, sort, order)
 {
 			console.log("hello " + brand);
 			var arr = document.getElementsByName("brandcheck")
@@ -21,12 +21,31 @@ function SetOptions(brand, price)
 				{
 					arr[i].checked = true;
 				}
-                        
-            }
+						
+			}
+			
+			if (sort && order)
+			{
+				var sortSelect = document.getElementById("inputGroupSelect01");
+				sortSelect.selectedIndex = sort;
+
+				var orderSelect = document.getElementById("inputGroupSelect02");
+				
+				if (order == 1)
+				{
+					orderSelect.selectedIndex = 1;
+				}
+				else
+				{
+					orderSelect.selectedIndex = 2;
+				}
+
+			}
 }
 
 function getSearchLink()
 {
+	//?brand=...&price=...
             var brand;
 			var arr = document.getElementsByName("brandcheck")
 			for(i = 0; i < arr.length; i++) { 
@@ -47,8 +66,22 @@ function getSearchLink()
 					price = arr[i].value;
 				}
                         
-            }
-
+			}
+			
 			var link = "/products/search/" + "?brand=" + brand + "&price=" + price;
+
+
+			//get sort option if there's one
+			var sort = document.getElementById("inputGroupSelect01");
+			var sortValue = sort[sort.selectedIndex].value;
+
+			var order = document.getElementById("inputGroupSelect02")
+			orderValue = order[order.selectedIndex].value;
+
+			if (sortValue!="0" && orderValue!="0")
+			{
+				link += "&sort=" + sortValue + "&by=" + orderValue;
+			}
+
 			document.getElementById("filterButton").href = link;
 }

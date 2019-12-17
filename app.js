@@ -53,6 +53,16 @@ app.use(function(req,res,next)
   {
     res.locals.price = req.query.price;
   }
+
+  if (req.query.sort)
+  {
+    res.locals.sort = req.query.sort;
+  }
+
+  if (req.query.by)
+  {
+    res.locals.order = req.query.by;
+  }
   next();
 })
 
