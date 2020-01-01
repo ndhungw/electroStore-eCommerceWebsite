@@ -22,7 +22,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var express = require('express');
 var router = express.Router();
-var Product = require('../db/models/product');
+var Product = require('../models/productModel');
 
 
 /* GET login page. */

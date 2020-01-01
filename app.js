@@ -16,6 +16,8 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var userAccountsRouter = require('./routes/userAccount');
 var productFilter = require('./routes/filter');
+var handlebarsHelper = require('./controller/HandlebarsHelper');
+
 var app = express();
 //require('dotenv').config()//my added
 

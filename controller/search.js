@@ -6,7 +6,7 @@ var ProductSearch = {};
 //   res.send('ListProduct');
 // });
 
-var Product = require('../db/models/product');
+var Product = require('../models/productModel');
 
 ProductSearch.GetProductList = function (req, res, next) {
     
