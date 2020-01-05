@@ -4,24 +4,12 @@ var router = express.Router();
 var ProductSearch = require('../controller/search');
 var productModel = require('../models/productModel');
 
-// /* GET products listing. */
-// router.get('products/list', function(req, res, next) {
-//   res.send('ListProduct');
-// });
-
 var Product = require('../models/productModel');
 
 /*GET search result*/
 router.get('/search/', function (req, res, next) { 
     
   ProductSearch.GetProductList(req, res, next)});
-
-/* GET products listing. */
-// router.get('/', function (req, res, next) {
-//   Product.find().exec(function (err, product) {
-//     res.render('pages/products/list', { title: 'Tất cả sản phẩm', products: product});
-//   });
-// });
 
 /* GET products listing. */
 /*xài middleware để lấy kết quả currentPage, prevPage, nextPage, làm pagination thủ công không dùng AJAX*/
