@@ -15,6 +15,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var userAccountsRouter = require('./routes/userAccount');
+var productFilter = require('./routes/filter');
+var handlebarsHelper = require('./controller/HandlebarsHelper');
+
 var app = express();
 //require('dotenv').config()//my added
 
@@ -40,12 +43,37 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req,res,next)
+{
+  res.locals.user = req.user;
+  if (req.query.brand)
+  {
+    res.locals.brand = req.query.brand;
+  }
+
+  if (req.query.price)
+  {
+    res.locals.price = req.query.price;
+  }
+
+  if (req.query.sort)
+  {
+    res.locals.sort = req.query.sort;
+  }
+
+  if (req.query.by)
+  {
+    res.locals.order = req.query.by;
+  }
+  next();
+})
 
 app.post('/login', userAccountsRouter);
 app.post('/register', userAccountsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);
+app.use('/filter',productFilter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
