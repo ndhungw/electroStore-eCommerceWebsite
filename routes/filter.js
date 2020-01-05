@@ -3,7 +3,7 @@ var ProductFilter = require('../controller/filter');
 
 var router = express.Router();
 
-var Product = require('../db/models/product');
+var Product = require('../models/productModel');
 
 router.get("/:filterID", function (req, res, next) { 
     

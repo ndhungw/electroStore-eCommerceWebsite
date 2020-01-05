@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 //   res.send('ListProduct');
 // });
 
-var UserAccount = require('../db/models/userAccount');
+var UserAccount = require('../models/userAccount');
 
 
 

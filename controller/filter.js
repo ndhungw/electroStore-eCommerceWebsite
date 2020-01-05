@@ -6,7 +6,7 @@ var ProductFilter = {};
 //   res.send('ListProduct');
 // });
 
-var Product = require('../db/models/product');
+var Product = require('../models/productModel');
 
 ProductFilter.getProductByFiler = function (req, res, next) {
     var condition = [];
