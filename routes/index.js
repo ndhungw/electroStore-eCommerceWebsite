@@ -27,7 +27,7 @@ var Product = require('../models/productModel');
 
 
 /* GET login page. */
-router.get('/login', function (req, res, next) {
+router.get('/login', passport.checkAlreadyLoggedIn, function (req, res, next) {
   
   res.render('pages/login', { title: 'Đăng nhập', message: req.flash('error')});
 });
@@ -39,7 +39,7 @@ router.get('/logout', function(req, res){
 });
 
 /* GET register page. */
-router.get('/register', function (req, res, next) {
+router.get('/register', passport.checkAlreadyLoggedIn, function (req, res, next) {
   res.render('pages/register', { title: 'Đăng kí', message: req.flash('error')});
 });
 
