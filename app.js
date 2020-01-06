@@ -35,7 +35,11 @@ app.use(express.json());
 //app.use(session());
 app.use(cookieParser());
 
-app.use(expressSession({secret: 'keyboard cat'}))
+app.use(expressSession({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -68,8 +72,8 @@ app.use(function(req,res,next)
   next();
 })
 
-app.post('/login', userAccountsRouter);
-app.post('/register', userAccountsRouter);
+// app.post('/login', userAccountsRouter);
+// app.post('/register', userAccountsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);

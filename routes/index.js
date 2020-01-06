@@ -23,25 +23,29 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var express = require('express');
 var router = express.Router();
+
+var bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });///////////
+
 var Product = require('../models/productModel');
 
-
-/* GET login page. */
-router.get('/login', passport.checkAlreadyLoggedIn, function (req, res, next) {
+// /* GET login page. */
+// router.get('/login', function (req, res, next) {
   
-  res.render('pages/login', { title: 'Đăng nhập', message: req.flash('error')});
-});
+//   res.render('pages/login', { title: 'Đăng nhập', message: req.flash('error')});
+// });
 
-/* GET logout page. */
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+// /* GET logout page. */
+// router.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/');
+// });
 
-/* GET register page. */
-router.get('/register', passport.checkAlreadyLoggedIn, function (req, res, next) {
-  res.render('pages/register', { title: 'Đăng kí', message: req.flash('error')});
-});
+// /* GET register page. */
+// router.get('/register', function (req, res, next) {
+//   res.render('pages/register', { title: 'Đăng kí', message: req.flash('error')});
+// });
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
