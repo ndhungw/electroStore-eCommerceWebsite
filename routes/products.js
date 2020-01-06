@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var ProductSearch = require('../controller/search');
+var ProductSearch = require('../controllers/search');
 var productModel = require('../models/productModel');
 
 var Product = require('../models/productModel');

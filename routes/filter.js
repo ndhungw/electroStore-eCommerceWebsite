@@ -1,5 +1,5 @@
 var express = require('express');
-var ProductFilter = require('../controller/filter');
+var ProductFilter = require('../controllers/filter');
 
 var router = express.Router();
 
