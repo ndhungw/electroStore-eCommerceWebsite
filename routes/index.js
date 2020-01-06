@@ -14,6 +14,7 @@ var express = require('express');
 var router = express.Router();
 
 var bodyParser = require('body-parser');
+var passport = require('../passport/index');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // /* GET products listing. */
 // router.get('products/list', function(req, res, next) {
@@ -71,11 +72,11 @@ router.get('/about.html', function(req, res, next) {
 });
 
 /* GET checkout page. */
-router.get('/checkout.html', function(req, res, next) {
+router.get('/checkout.html', passport.ensureAuthenticated ,function(req, res, next) {
   res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
 });
 /* POST checkout page. */
-router.post('/checkout.html', function(req, res, next) {
+router.post('/checkout.html', passport.ensureAuthenticated, function(req, res, next) {
   res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
 });
 
@@ -105,12 +106,12 @@ router.get('/help.html', function(req, res, next) {
 });
 
 /* GET payment page. */
-router.get('/payment.html', function(req, res, next) {
+router.get('/payment.html', passport.ensureAuthenticated, function(req, res, next) {
   res.render('pages/payment', { title: 'Thanh toán' });
 });
 
 /* POST payment page. */
-router.post('/payment.html', function(req, res, next) {
+router.post('/payment.html', passport.ensureAuthenticated, function(req, res, next) {
   res.render('pages/payment', { title: 'Thanh toán' });
 });
 
