@@ -1,0 +1,136 @@
+<script>
+    const CART = {
+        KEY: 'MYFUKINGWOWCART',
+        contents: [],
+        init() {
+            //check localStorage and initialize the contents of CART.contents
+            let _contents = localStorage.getItem(CART.KEY);
+            
+            if (_contents) {
+                CART.contents = JSON.parse(_contents);
+            } else {
+                //dummy test data
+                /*CART.contents = [
+                    { id: 1, item_name: 'Samsung Galaxy S9', qty: 1, price: 300 },
+                    { id: 2, item_name: 'iPhone 8 Plus', qty: 1, price: 400 },
+                    { id: 3, item_name: 'Xiaomi Mi Alpha', qty: 1, price: 700 },
+                    { id: 1, item_name: 'Samsung Galaxy S9', qty: 1, price: 300 },
+                    { id: 2, item_name: 'iPhone 8 Plus', qty: 1, price: 400 },
+                    { id: 3, item_name: 'Xiaomi Mi Alpha', qty: 1, price: 700 }
+                ];*/
+
+                //in production use an empty array here only
+                CART.sync();
+            }
+        },
+        async sync() {
+            let _cart = JSON.stringify(CART.contents);
+            await localStorage.setItem(CART.KEY, _cart);
+        },
+        find(id){
+            //find an item in the cart by it's id
+            let match = CART.contents.filter( item => {
+                if (item.id == id) {
+                    //console.log('find(id) has match that is: ' + item.id == id)
+                    return true;
+                }
+            });
+
+            if(match && match[0])
+                return match[0];
+        },
+        add(productToAdd){
+            //add a new item to the cart
+            //check that it is not in the cart already
+            if (CART.find(productToAdd.id)) {
+                CART.increase(productToAdd.id, 1);
+            } else {
+                // product to add not in the cart already
+                CART.contents.push(productToAdd);
+
+                //update localStorage
+                CART.sync();
+            }
+        },
+        increase(id, qty=1) {
+            //increase the quantity of an item in the cart
+            CART.contents = CART.contents.map(item=>{
+                if (item.id === id)
+                    item.qty = parseInt(item.qty) + parseInt(qty);
+                return item;
+            });
+
+            //update localStorage
+            CART.sync();
+        },
+        reduce(id, qty) {
+            //reduce the quantity of an item in the cart
+            CART.contents = CART.contents.map(item => {
+                if (item.id === id){
+                    item.qty = item.qty - qty;
+                }
+
+                return item;
+            });
+
+            CART.contents.forEach(async item => {
+                if (item.id === id && item.qty === 0){
+                    await CART.remove(id);
+                }
+            });
+
+            //update localStorage
+            CART.sync();
+        },
+        remove(id) {
+            //remove an item entirely from CART.contents based on it's id
+            CART.contents = CART.contents.filter(item => {
+                if (item.id !== id){
+                    return true;
+                }
+            });
+
+            //update localStorage
+            CART.sync();
+        },
+        empty() {
+            //empty whole cart
+            CART.contents = [];
+
+            //update localStorage
+            CART.sync();
+        },
+        logContents(prefix) {
+            console.log(prefix, CART.contents);
+        }
+    };
+
+    function addToCart(id) {
+            console.log('run function addToCart()');
+            
+            //Initialize CART
+            CART.init();
+
+            //Process the action
+            //dataSource[0]: product_id
+            //dataSource[1]: name
+            //dataSource[2]: brand
+            //dataSource[3]: qty
+            //dataSource[4]: price
+            //dataSource[5]: discount
+            //dataSource[6]: imgURL
+            const dataSource = document.getElementById(id).children;
+
+            let productToAdd = {
+                id: dataSource[0].value,
+                name: dataSource[1].value,
+                brand: dataSource[2].value,
+                qty: dataSource[3].value,
+                price: dataSource[4].value,
+                discount: dataSource[5].value,
+                imgURL: dataSource[6].value
+            }
+
+            CART.add(productToAdd);
+        }
+</script>

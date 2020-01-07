@@ -60,10 +60,10 @@
 												<span class="item_price">${{this.currentPrice}}</span>
 												<del>${{this.oldPrice}}</del>
 											</div>
-											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-												<form action="#" method="post">
+											{{!-- <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+												<form action="/checkout/add-to-cart" method="post">
 													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" id="cmd" name="cmd" value="_cart">
 														<input type="hidden" name="add" value="1">
 														<input type="hidden" name="business" value=" ">
 														<input type="hidden" name="item_name" value="{{this.name}}">
@@ -72,11 +72,30 @@
 														<input type="hidden" name="currency_code" value="USD">
 														<input type="hidden" name="return" value=" ">
 														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button btn">
+														<input type="submit" name="submit" value="Chọn mua" class="button btn">
 													</fieldset>
 												</form>
+											</div> --}}
+
+											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+													<fieldset id="{{this._id}}">
+														{{!-- <input type="hidden" id="cmd" name="cmd" value="_cart"> --}}
+														<input type="hidden" id="productToAdd_id" name="product_id" value="{{this._id}}">
+														<input type="hidden" id="productToAdd_name" name="name" value="{{this.name}}">
+														<input type="hidden" id="productToAdd_brand" name="brand" value="{{this.brand}}">
+														<input type="hidden" id="productToAdd_count" name="qty" value="1">
+														<input type="hidden" id="productToAdd_price" name="price" value="{{this.currentPrice}}">
+														<input type="hidden" id="productToAdd_discount" name="discount" value="0">
+														<input type="hidden" id="productToAdd_imgURL" name="imgURL" value="{{this.imgURL}}">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+
+														<input type="submit" name="submit" value="Chọn mua" class="button btn" onclick='addToCart("{{this._id}}")'>
+													</fieldset>
 											</div>
-								
+
 										</div>
 									</div>
 								</div>
@@ -84,6 +103,12 @@
 							</div>
 						</div>
 
+						{{!-- <script>
+							function addToCart() {
+									console.log('run function addToCart()');
+								}
+						</script> --}}
+						
 						{{!-- handlebars Helper: tạo thanh phân trang, <tên>, <ds tham số>--}}
 						{{{createPagination totalPage currentPage.page previousPageStatus nextPageStatus}}}
 						<!-- //first section -->
@@ -254,4 +279,5 @@
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 
+	{{>AddToCartButtonScript}}
 </body>
