@@ -1,22 +1,26 @@
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var express = require('express');
-var expressSession = require('express-session');
-var bodyParser = require('body-parser');
+var expressHbs = require('express-handlebars');//my added
+var session = require('express-session');
 var flash = require('connect-flash');
-
+var logger = require('morgan');
 var path = require('path');
 var passport = require('passport');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var expressHbs = require('express-handlebars');//my added
+
+//Database
 var Database = require('./db/database');//my added
+
+//Passport config
+require('./config/passport')(passport);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var userAccountsRouter = require('./routes/userAccount');
 var productFilter = require('./routes/filter');
-var handlebarsHelper = require('./controller/HandlebarsHelper');
+var handlebarsHelper = require('./controllers/HandlebarsHelper');
 
 var app = express();
 //require('dotenv').config()//my added
@@ -29,23 +33,37 @@ app.set('view engine', '.hbs');//my added
 
 app.use(logger('dev'));
 app.use(express.json());
-
-//app.use(express.urlencoded({ extended: false }));
-
-//app.use(session());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(expressSession({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
-}))
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(flash());
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
+  extended: true
+})); 
+
+// Express session
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global vars
+app.use( (req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.verification_msg = req.flash('verification_msg');
+  next();
+});
 
 app.use(function(req,res,next)
 {
@@ -78,8 +96,7 @@ app.use(function(req,res,next)
   next();
 })
 
-// app.post('/login', userAccountsRouter);
-// app.post('/register', userAccountsRouter);
+// Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products',productsRouter);
