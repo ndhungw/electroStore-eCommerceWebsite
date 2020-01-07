@@ -1,10 +1,13 @@
 const Handlebars = require("handlebars");
 
+
 //HandlebarsHelper
 Handlebars.registerHelper('createPagination',
 function (totalPage, currentPage){
   let arr = '';
   let i = 1;
+  //var link = getSearchLink();
+  //console.log(link);
   while(i <= totalPage){
     arr = arr.concat(`<li class="page-item ${i === currentPage ?'active' : ''}"><a class="page-link" href="/products/?page=${i}&limit=5">${i}</a></li>`);
     i++;

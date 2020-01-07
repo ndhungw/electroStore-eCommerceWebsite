@@ -50,6 +50,12 @@ app.use(passport.session());
 app.use(function(req,res,next)
 {
   res.locals.user = req.user;
+  
+  if (req.query.search)
+  {
+    res.locals.search = req.query.search;
+  }
+
   if (req.query.brand)
   {
     res.locals.brand = req.query.brand;

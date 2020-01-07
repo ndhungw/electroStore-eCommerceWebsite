@@ -12,9 +12,17 @@ ProductSearch.GetProductList = function (req, res, next) {
     
     var condition = [];
     condition.push({});
+
+    if (req.query.search)
+    {
+        console.log(req.query.search)
+        var searchStr = req.query.search;
+        condition.push({ name: { "$regex": searchStr, "$options": "i" } })
+    }
+
 //?brand=
     //get brand from query string
-    if (req.query.brand != "All")
+    if (req.query.brand && req.query.brand != "All")
     {
         var chosenBrand = req.query.brand;
         condition.push({brand: chosenBrand});

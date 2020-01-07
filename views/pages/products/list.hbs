@@ -1,4 +1,4 @@
-<body onload='SetOptions("{{brand}}","{{price}}","{{sort}}", "{{order}}")'>
+<body onload='SetOptions("{{search}}","{{brand}}","{{price}}","{{sort}}", "{{order}}")'>
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l">
 
@@ -164,6 +164,14 @@
 				<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
 					<div class="side-bar p-sm-4 p-3">
 						<div class="search-hotel border-bottom py-2">
+							<h3 class="agileits-sear-head mb-3">Tìm tại đây..</h3>
+							<input id="searchInput" type="search" placeholder="Product name..." name="search" required="">
+								<div class="left-side py-2">
+									<a id="SearchButton" class="btn my-2 my-sm-0" onclick="getSearchLink()">Search</a>
+								</div>
+						</div>
+						<div class="search-hotel border-bottom py-2">
+							<h3 class="agileits-sear-head mb-3">Sắp xếp</h3>
 							{{!-- select Sort & Order --}}
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
@@ -295,7 +303,7 @@
 
 						<!-- submit button -->
 						<div class="left-side py-2">
-							<a id="filterButton" href="#" class="btn my-2 my-sm-0" onclick="getSearchLink()">Set
+							<a id="filterButton" class="btn my-2 my-sm-0" onclick="getSearchLink()">Set
 								filter</a>
 
 						</div>

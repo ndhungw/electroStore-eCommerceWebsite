@@ -1,6 +1,8 @@
 
-function SetOptions(brand, price, sort, order)
+function SetOptions(search, brand, price, sort, order)
 {
+			document.getElementById("searchInput").value = search;
+
 			console.log("hello " + brand);
 			var arr = document.getElementsByName("brandcheck")
 			for(i = 0; i < arr.length; i++) {
@@ -45,6 +47,8 @@ function SetOptions(brand, price, sort, order)
 
 function getSearchLink()
 {
+
+			var searchStr = document.getElementById("searchInput").value; 
 	//?brand=...&price=...
             var brand;
 			var arr = document.getElementsByName("brandcheck")
@@ -68,7 +72,7 @@ function getSearchLink()
                         
 			}
 			
-			var link = "/products/search/" + "?brand=" + brand + "&price=" + price;
+			var link = "/products/search/" + "?search=" + searchStr + "&brand=" + brand + "&price=" + price;
 
 
 			//get sort option if there's one
@@ -84,4 +88,8 @@ function getSearchLink()
 			}
 
 			document.getElementById("filterButton").href = link;
+			document.getElementById("SearchButton").href = link;
+			document.getElementById("filterButton").click();
+			return link;
+			
 }
