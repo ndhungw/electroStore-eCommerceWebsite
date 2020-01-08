@@ -16,62 +16,26 @@ var Product = require('../models/productModel');
 //   }));
 // })
 
-// auth.ensureAuthenticated, 
-router.get('/', function(req, res, next) {
+/* GET home page. */
+router.get('/', auth.ensureAuthenticated, function(req, res, next) {
   res.render('pages/index', { 
     title: 'Trang chủ',
     user: req.user
   });
 });
 
-/* GET home page.        auth.ensureAuthenticated,*/
-router.get('/index.html', function(req, res, next) {
+/* GET home page. */
+router.get('/index.html', auth.ensureAuthenticated, function(req, res, next) {
   res.render('pages/index', { 
-    title: 'Trang chủ',
-    user: req.user }
+    title: 'Trang chủ'
+  }
     );
 });
-
-// /* POST home page. */
-// router.post('/', function(req, res, next) {
-//   res.render('index', { title: 'Trang chủ'});
-// });
-
-/* GET index.html page. */
-router.get('/index.html', function(req, res, next) {
-  res.render('index', { title: 'Trang chủ' });
-});
-
-// /* POST index.html page. */
-// router.post('/index.html', function(req, res, next) {
-//   res.render('index', { title: 'Trang chủ' });
-// });
-
 
 // /* GET about page. */
 // router.get('/about.html', function(req, res, next) {
 //   res.render('pages/about', { title: 'Về chúng tôi' });
 // });
-
-/* GET checkout page.       auth.ensureAuthenticated , */
-router.get('/checkout.html', function(req, res, next) {
-  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
-});
-
-/* POST checkout page.        auth.ensureAuthenticated, */
-router.post('/checkout.html', function(req, res, next) {
-  res.render('pages/checkout', { title: 'Kiểm tra giỏ hàng' });
-});
-
-/* GET payment page.          auth.ensureAuthenticated, */
-router.get('/payment.html', function(req, res, next) {
-  res.render('pages/payment', { title: 'Thanh toán' });
-});
-
-/* POST payment page.         auth.ensureAuthenticated,*/
-router.post('/payment.html',  function(req, res, next) {
-  res.render('pages/payment', { title: 'Thanh toán' });
-});
 
 // /* GET contact page. */
 // router.get('/contact.html', function(req, res, next) {

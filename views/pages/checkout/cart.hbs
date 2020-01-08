@@ -26,7 +26,7 @@
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-                <span>K</span>iểm tra
+                <span>Giỏ hàng</span>
             </h3>
             <!-- //tittle heading -->
             <div class="checkout-right">
@@ -46,7 +46,11 @@
                                 <th>Bỏ chọn</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="cartTable">
+
+
+
+
                             <tr class="rem1">
                                 <td class="invert">1</td>
                                 <td class="invert-image">
@@ -68,11 +72,16 @@
                                 <td class="invert">Ốp lưng</td>
                                 <td class="invert">$259</td>
                                 <td class="invert">
-                                    <div class="rem">
+                                    {{!-- <div class="rem">
                                         <div class="close1"> </div>
+                                    </div> --}}
+                                    <div class="close">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                     </div>
+                                    
                                 </td>
                             </tr>
+
                             <tr class="rem2">
                                 <td class="invert">2</td>
                                 <td class="invert-image">
@@ -99,6 +108,7 @@
                                     </div>
                                 </td>
                             </tr>
+
                             <tr class="rem3">
                                 <td class="invert">3</td>
                                 <td class="invert-image">
@@ -109,11 +119,13 @@
                                 <td class="invert">
                                     <div class="quantity">
                                         <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
+                                            {{!-- <div class="entry value-minus">&nbsp;</div> --}}
+                                            <button type="button" class="btn btn-outline-secondary"> - </button>
                                             <div class="entry value">
                                                 <span>1</span>
                                             </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
+                                            {{!-- <div class="entry value-plus active">&nbsp;</div> --}}
+                                            <button type="button" class="btn btn-outline-secondary"> + </button>
                                         </div>
                                     </div>
                                 </td>
@@ -125,13 +137,17 @@
                                     </div>
                                 </td>
                             </tr>
+
+
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="checkout-left">
                 <div class="address_form_agile mt-sm-5 mt-4">
-                    <h4 class="mb-sm-4 mb-3">Thêm chi tiết</h4>
+                    <h4 class="mb-sm-4 mb-3">Thêm chi tiết cho đơn hàng</h4>
                     <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
                         <div class="creditly-wrapper wthree, w3_agileits_wrapper">
                             <div class="information-wrapper">
@@ -164,12 +180,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <button class="submit check_out btn">Delivery to this Address</button>
+                                {{!-- <button class="submit check_out btn">Delivery to this Address</button> --}}
                             </div>
                         </div>
                     </form>
                     <div class="checkout-right-basket">
-                        <a href="payment.html">Thực hiện thanh toán
+                        <a href="/checkout/payment">Thực hiện thanh toán
                             <span class="far fa-hand-point-right"></span>
                         </a>
                     </div>
@@ -243,4 +259,8 @@
     <!-- //for bootstrap working -->
     <!-- //js-files -->
     
+    {{>AddToCartButtonScript}}
+
+    
+
 </body>

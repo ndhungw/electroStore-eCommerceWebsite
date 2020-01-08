@@ -50,6 +50,7 @@ router.post('/register', usersController.registerNewUser);
 
 
 // VERIFICATION EMAIL
+// localhost:4000/users/email-verification
 router.get('/email-verification', usersController.activateUser);
 
 router.get('/requireVerification', (req,res) => {

@@ -83,5 +83,4 @@ controller.activateUser = async (req, res) => {
     }
 
 }
-
 module.exports = controller;
