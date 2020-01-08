@@ -25,7 +25,7 @@ const indexController = require('../controllers/indexController');
 //   });
 // });
 
-router.get('/', auth.ensureAuthenticated, indexController.displayHomePage);
+router.get('/', indexController.displayHomePage);
 
 /* GET home page. */
 // router.get('/index.html', auth.ensureAuthenticated, function(req, res, next) {
@@ -34,7 +34,7 @@ router.get('/', auth.ensureAuthenticated, indexController.displayHomePage);
 //   }
 //   );
 // });
-router.get('/index.html', auth.ensureAuthenticated, indexController.displayHomePage);
+router.get('/index.html', indexController.displayHomePage);
 
 // /* GET about page. */
 // router.get('/about.html', function(req, res, next) {
