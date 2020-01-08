@@ -23,9 +23,17 @@
                 CART.sync();
             }
         },
+        async updateCartQty(){
+            //update cart_qty
+            let cartData = await JSON.parse(localStorage.getItem(CART.KEY));
+            let cart_qty = cartData.length;
+            document.getElementById("cart_quantity").innerHTML = cart_qty;
+        },
         async sync() {
             let _cart = JSON.stringify(CART.contents);
             await localStorage.setItem(CART.KEY, _cart);
+            
+            CART.updateCartQty()
         },
         find(id){
             //find an item in the cart by it's id
@@ -63,11 +71,11 @@
             //update localStorage
             CART.sync();
         },
-        reduce(id, qty) {
+        reduce(id, qty=1) {
             //reduce the quantity of an item in the cart
             CART.contents = CART.contents.map(item => {
                 if (item.id === id){
-                    item.qty = item.qty - qty;
+                    item.qty = parseInt(item.qty) - parseInt(qty);
                 }
 
                 return item;
@@ -102,7 +110,7 @@
         },
         logContents(prefix) {
             console.log(prefix, CART.contents);
-        }
+        }        
     };
 
     function addToCart(id) {
@@ -133,4 +141,182 @@
 
             CART.add(productToAdd);
         }
+
+    let cartData = JSON.parse(localStorage.getItem(CART.KEY));
+
+    window.onload = function () {
+            CART.updateCartQty();
+        }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        //get the cart items from localStorage
+        CART.init();
+        
+        //load the cart items
+        showCart();
+    });
+
+    function showCart() {
+        let cartTable = document.getElementById('cartTable');
+
+        //reset table
+        cartTable.innerHTML = '';
+
+
+        cartData = JSON.parse(localStorage.getItem(CART.KEY));
+        
+        CART.updateCartQty();
+        
+        //each products
+        for (let i = 0; i < cartData.length; i++) {
+
+            console.log('Run ' + i + ' time')
+            /*create a table row for each product*/
+
+            //<tr>
+            let tr = document.createElement("TR");
+            tr.setAttribute('class', `rem${i + 1}`);
+            tr.setAttribute('id', `tr-${cartData[i].id}`);
+            cartTable.appendChild(tr);// </tr>
+
+            //=td1
+            let td1 = document.createElement("TD");
+            td1.setAttribute('id', `td1-${cartData[i].id}`);
+            td1.innerHTML = `${i + 1}`
+            td1.setAttribute('class', 'invert');
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td1);
+
+            //=td2
+            let td2 = document.createElement("TD");
+            td2.setAttribute('id', `td2-${cartData[i].id}`);
+            td2.setAttribute('class', 'invert-image');
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td2);
+
+            //==a
+            let td2_a = document.createElement("A");
+            td2_a.setAttribute('id', `td2-a-${cartData[i].id}`);
+            td2_a.setAttribute('href', `/products/${cartData[i].brand}/${cartData[i].id}`);
+            document.getElementById(`td2-${cartData[i].id}`).appendChild(td2_a);
+
+            //===img
+            let td2_a_img = document.createElement("IMG");
+            td2_a_img.setAttribute('src', `${cartData[i].imgURL}`);
+            td2_a_img.setAttribute('class', 'img-responsive');
+            td2_a_img.setAttribute('height', '200');
+            document.getElementById(`td2-a-${cartData[i].id}`).appendChild(td2_a_img);
+            //close td2
+
+            //=td3
+            let td3 = document.createElement("TD");
+            td3.setAttribute('id', `td3-${cartData[i].id}`)
+            td3.setAttribute('class', 'invert');
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td3);
+
+            //==div.quantity td3_div1
+            let td3_div1 = document.createElement("DIV");
+            td3_div1.setAttribute('id', `td3-div1-${cartData[i].id}`)
+            td3_div1.setAttribute('class', 'quantity')
+            document.getElementById(`td3-${cartData[i].id}`).appendChild(td3_div1);
+
+            //==div.quantity-select td3_div1_div1
+            let td3_div1_div1 = document.createElement("DIV");
+            td3_div1_div1.setAttribute('id', `td3-div1-div1-${cartData[i].id}`)
+            td3_div1_div1.setAttribute('class', 'quantity-select')
+            document.getElementById(`td3-div1-${cartData[i].id}`).appendChild(td3_div1_div1);
+
+            //==div.entry value-minus td3_div1_div1_div1
+            /*let td3_div1_div1_div1 = document.createElement("DIV");
+            td3_div1_div1_div1.setAttribute('id',`td3-div1-div1-div1-${cartData[i].id}`)
+            //td3_div1_div1_div1.setAttribute('class','entry value-minus')
+            td3_div1_div1_div1.innerHTML = '&nbsp';
+            document.getElementById(`td3-div1-div1-${cartData[i].id}`).appendChild(td3_div1_div1_div1);
+*/
+            //==button(-) td3_div1_div1_button
+            let td3_div1_div1_button = document.createElement("BUTTON");
+            td3_div1_div1_button.setAttribute('id', `td3-div1-div1-div1-${cartData[i].id}`)
+            td3_div1_div1_button.setAttribute('class', 'btn btn-outline-secondary')
+            td3_div1_div1_button.setAttribute('onClick', `reduceProduct('${cartData[i].id}','${cartData[i].qty}')`)
+            td3_div1_div1_button.innerHTML = ' - ';
+            document.getElementById(`td3-div1-div1-${cartData[i].id}`).appendChild(td3_div1_div1_button);
+
+            //==div.entry value td3_div1_div1_div2
+            let td3_div1_div1_div2 = document.createElement("DIV");
+            td3_div1_div1_div2.setAttribute('id', `td3-div1-div1-div2-${cartData[i].id}`)
+            td3_div1_div1_div2.setAttribute('class', 'entry value')
+            document.getElementById(`td3-div1-div1-${cartData[i].id}`).appendChild(td3_div1_div1_div2);
+
+            //==span td3_div1_div1_div2_span
+            let td3_div1_div1_div2_span = document.createElement("SPAN");
+            td3_div1_div1_div2_span.innerHTML = cartData[i].qty;
+            document.getElementById(`td3-div1-div1-div2-${cartData[i].id}`).appendChild(td3_div1_div1_div2_span);
+
+
+            let td3_div1_div1_button3 = document.createElement("BUTTON");
+            td3_div1_div1_button3.setAttribute('id', `td3_div1_div1_button3-${cartData[i].id}`)
+            td3_div1_div1_button3.setAttribute('class', 'btn btn-outline-secondary')
+            td3_div1_div1_button3.setAttribute('onClick', `increaseProduct('${cartData[i].id}','${cartData[i].qty}')`)
+            td3_div1_div1_button3.innerHTML = ' + ';
+            document.getElementById(`td3-div1-div1-${cartData[i].id}`).appendChild(td3_div1_div1_button3);
+
+            let td4 = document.createElement("TD");
+            td4.setAttribute('id', `td4-${cartData[i].id}`)
+            td4.setAttribute('class', 'invert');
+            td4.innerHTML = cartData[i].name;
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td4);
+
+
+            let td5 = document.createElement("TD");
+            td5.setAttribute('id', `td5-${cartData[i].id}`)
+            td5.setAttribute('class', 'invert');
+            td5.innerHTML = `$${cartData[i].price}`;
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td5);
+
+            //=td6
+            let td6 = document.createElement("TD");
+            td6.setAttribute('id', `td6-${cartData[i].id}`)
+            td6.setAttribute('class', 'invert');
+            document.getElementById(`tr-${cartData[i].id}`).appendChild(td6);
+
+            //==div.close td6_div1
+            let td6_div1 = document.createElement("DIV");
+            td6_div1.setAttribute('id', `td6-div1-${cartData[i].id}`)
+            td6_div1.setAttribute('class', 'close')
+            document.getElementById(`td6-${cartData[i].id}`).appendChild(td6_div1);
+
+            //==div.close td6_div1_div1
+            let td6_div1_div1 = document.createElement("SPAN");
+            //td6_div1_div1.setAttribute('id',`td6-div1-div1-${cartData[i].id}`)
+            //td6_div1_div1.setAttribute('class',`close${i+1}`);
+            td6_div1_div1.innerHTML = `&times`;
+            td6_div1_div1.setAttribute('onCLick', `removeProduct("${cartData[i].id}")`)
+            document.getElementById(`td6-div1-${cartData[i].id}`).appendChild(td6_div1_div1);
+        }
+    }
+
+    function removeProduct(id) {
+        console.log('run removeProduct(id)');
+        CART.remove(id);
+
+        CART.sync();
+
+        showCart();
+    }
+
+    function increaseProduct(id) {
+        console.log('run increaseProduct(id)');
+        CART.increase(id)
+
+        CART.sync();
+
+        showCart();
+    }
+
+    function reduceProduct(id) {
+        console.log('run reduceProduct(id)');
+        CART.reduce(id);
+
+        CART.sync();
+
+        showCart();
+    }
 </script>
