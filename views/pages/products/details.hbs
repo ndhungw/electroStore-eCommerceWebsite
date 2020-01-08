@@ -105,7 +105,7 @@
 					</div>
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-							<form action="#" method="post">
+							{{!-- <form action="#" method="post">
 								<fieldset>
 									<input type="hidden" name="cmd" value="_cart" />
 									<input type="hidden" name="add" value="1" />
@@ -116,9 +116,25 @@
 									<input type="hidden" name="currency_code" value="USD" />
 									<input type="hidden" name="return" value=" " />
 									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="Add to cart" class="button" />
+									<input type="submit" name="submit" value="Add to cart" class="button" /> 
 								</fieldset>
-							</form>
+							</form> --}}
+							<fieldset id="{{foundProduct._id}}">
+								{{!-- <input type="hidden" id="cmd" name="cmd" value="_cart"> --}}
+								<input type="hidden" id="productToAdd_id" name="product_id" value="{{foundProduct._id}}">
+								<input type="hidden" id="productToAdd_name" name="name" value="{{foundProduct.name}}">
+								<input type="hidden" id="productToAdd_brand" name="brand" value="{{foundProduct.brand}}">
+								<input type="hidden" id="productToAdd_count" name="qty" value="1">
+								<input type="hidden" id="productToAdd_price" name="price" value="{{foundProduct.currentPrice}}">
+								<input type="hidden" id="productToAdd_discount" name="discount" value="0">
+								<input type="hidden" id="productToAdd_imgURL" name="imgURL" value="{{foundProduct.imgURL}}">
+								<input type="hidden" name="business" value=" ">
+								<input type="hidden" name="currency_code" value="USD">
+								<input type="hidden" name="return" value=" ">
+								<input type="hidden" name="cancel_return" value=" ">
+							
+								<input type="submit" name="submit" value="Chọn mua" class="button btn" onclick='addToCart("{{foundProduct._id}}")'>
+							</fieldset>
 						</div>
 					</div>
 				</div>

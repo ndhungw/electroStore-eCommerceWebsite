@@ -7,9 +7,8 @@ controller.displayCart = async (req, res) => {
 }
 
 controller.displayPaymentPage = (req, res) => {
-    
-
     // (payment.html)
-    res.render('pages/checkout/payment', { products: cartData });
+    // res.render('pages/checkout/payment', { products: cartData });
+    res.render('pages/checkout/payment');
 }
 module.exports = controller;

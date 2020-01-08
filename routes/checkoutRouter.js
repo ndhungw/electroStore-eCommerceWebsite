@@ -8,7 +8,7 @@ const checkoutController = require('../controllers/checkout');
 
 /* GET Method */
 // GET cart page
-router.get('/cart', auth.ensureAuthenticated, checkoutController.displayCart);
+router.get('/cart', checkoutController.displayCart);
 
 // GET shipping page
 router.get('/shipping', ()=> {});
