@@ -7,6 +7,7 @@ const auth = require('../config/auth');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var Product = require('../models/productModel');
+const indexController = require('../controllers/indexController');
 
 /* GET home page. */
 // router.get('/', function (req, res, next) {
@@ -17,20 +18,23 @@ var Product = require('../models/productModel');
 // })
 
 /* GET home page. */
-router.get('/', auth.ensureAuthenticated, function(req, res, next) {
-  res.render('pages/index', { 
-    title: 'Trang chủ',
-    user: req.user
-  });
-});
+// router.get('/', auth.ensureAuthenticated, function(req, res, next) {
+//   res.render('pages/index', { 
+//     title: 'Trang chủ',
+//     user: req.user
+//   });
+// });
+
+router.get('/', auth.ensureAuthenticated, indexController.displayHomePage);
 
 /* GET home page. */
-router.get('/index.html', auth.ensureAuthenticated, function(req, res, next) {
-  res.render('pages/index', { 
-    title: 'Trang chủ'
-  }
-    );
-});
+// router.get('/index.html', auth.ensureAuthenticated, function(req, res, next) {
+//   res.render('pages/index', {
+//     title: 'Trang chủ'
+//   }
+//   );
+// });
+router.get('/index.html', auth.ensureAuthenticated, indexController.displayHomePage);
 
 // /* GET about page. */
 // router.get('/about.html', function(req, res, next) {

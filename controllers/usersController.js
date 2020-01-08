@@ -1,9 +1,32 @@
 var userModel = require('../models/userModel');
 const mailer = require('../config/nodemailer')
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
 //import logger from '../core/logger/app-logger'
 
 const controller = {};
+
+controller.displayLoginPage = (req, res) => {
+    res.render('pages/users/login', { title: 'Đăng nhập', message: req.flash('error')});
+}
+
+controller.displayResgiterPage = (req, res) => {
+    res.render('pages/users/register', { title: 'Đăng kí', message: req.flash('error')});
+}
+
+controller.displayLogoutPage = (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
+}
+
+controller.loginInto = (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+        failureFlash: true
+      })(req, res, next);
+}
 
 controller.registerNewUser = async (req, res) => {
     //console.log('Thong tin dang ky:', req.body.name, req.body.email, req.body.password, req.body.password2, req.body.avatarURL);
@@ -82,5 +105,9 @@ controller.activateUser = async (req, res) => {
         console.log('ERROR in VERIFICATION: userModel.setActiveStatus(userID) false - ' + err);
     }
 
+}
+
+controller.displayRequireVerification = (req,res) => {
+    res.render('pages/users/requireVerification')
 }
 module.exports = controller;

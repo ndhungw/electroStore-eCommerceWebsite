@@ -73,6 +73,28 @@ ProductsModel.paginatedResults = () => {
     }
 }
 
+// GET All products
+ProductsModel.getAll = () => {
+    console.log('ProductsModel.getAll');
+    var query = ProductsModel.find({});
+    return query;
+}
+
+/**
+ * Get an productID with <productID>
+ */
+ProductsModel.getProduct = (productID) => {
+    console.log('ProductsModel.getProduct');
+    var query = ProductsModel.findById(productID);
+    return query;
+}
+
+ProductsModel.getProductByBrand = (brand) => {
+    console.log('ProductsModel.getProductByBrand');
+    var query = ProductsModel.find({brand: brand});
+    return query;
+}
+
 /*export this module so that i can import the functionality 
 of this file in other files*/
 //export mongoose and model method
